@@ -1,2 +1,8 @@
 # IntelliJ Idea
 .idea
+
+# Maven
+target
+
+# Jenv
+.java-version
