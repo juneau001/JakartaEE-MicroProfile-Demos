@@ -5,6 +5,7 @@
  */
 package com.acme.acmepools.jsf;
 
+import com.acme.acmepools.entity.util.JsfUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.event.Event;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import com.acme.acmepools.event.SaleEvent;
 import com.acme.acmepools.qualifier.OnlineSale;
+import com.acme.acmepools.qualifier.StoreSale;
 
 
 /**
@@ -28,6 +30,10 @@ public class PoolSaleController implements java.io.Serializable {
     @Inject
     @OnlineSale
     private Event<SaleEvent> onlineSaleEvent;
+    
+    @Inject
+    @StoreSale
+    private Event<SaleEvent> storeSaleEvent;
 
     private SaleEvent currentEvent;
 
@@ -42,6 +48,7 @@ public class PoolSaleController implements java.io.Serializable {
         List notifyList = new ArrayList();
         currentEvent.setNotifyList(notifyList);
         onlineSaleEvent.fire(currentEvent);
+        JsfUtil.addSuccessMessage("Pool Sale Submitted");
         currentEvent = null;
     }
 
@@ -51,11 +58,11 @@ public class PoolSaleController implements java.io.Serializable {
     public void storeSaleAction() {
         List notifyList = new ArrayList();
         currentEvent.setNotifyList(notifyList);
-        onlineSaleEvent.fireAsync(currentEvent)
-                .whenComplete((event, throwable) -> {
+        storeSaleEvent.fireAsync(currentEvent)
+                .whenComplete((e, throwable) -> {
                     if (throwable != null) {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                                FacesMessage.SEVERITY_ERROR, "FAIL", "Error has occurred " + throwable.getMessage()));
+                                FacesMessage.SEVERITY_ERROR, "FAIL", "Error has occurred " + throwable));
                     } else {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                                 FacesMessage.SEVERITY_INFO, "SUCCESS", "Successful Brick-and-Mortor Store Sale Processing..."));

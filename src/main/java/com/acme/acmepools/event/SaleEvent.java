@@ -5,6 +5,8 @@
  */
 package com.acme.acmepools.event;
 
+import com.acme.acmepools.entity.Pool;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,25 +15,37 @@ import java.util.List;
  *
  * @author Juneau
  */
-public class SaleEvent {
+public class SaleEvent implements Serializable {
 
-    private BigDecimal pool;
+    private Pool pool;
     private String storeName;
     private BigDecimal price;
     private LocalDate date;
     private List<String> notifyList;
     
+    public SaleEvent(){
+        
+    }
+    
+    public SaleEvent(String storeName,
+                     LocalDate date,
+                     Pool pool){
+        this.storeName = storeName;
+        this.date = date;
+        this.pool = pool;
+    }
+    
     /**
      * @return the pool
      */
-    public BigDecimal getPool() {
+    public Pool getPool() {
         return pool;
     }
 
     /**
      * @param pool the pool to set
      */
-    public void setPool(BigDecimal pool) {
+    public void setPool(Pool pool) {
         this.pool = pool;
     }
 
@@ -89,5 +103,10 @@ public class SaleEvent {
      */
     public void setNotifyList(List<String> notifyList) {
         this.notifyList = notifyList;
+    }
+    
+    @Override
+    public String toString() {
+        return this.storeName + this.pool.getStyle();
     }
 }

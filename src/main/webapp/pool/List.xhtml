@@ -97,6 +97,29 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
+            
+            <br/><br/>
+            <p:messages id="messages"/>
+            <p:panel header="Pool Sales">
+            <h:form id="poolSaleForm">
+                <h:outputLabel for="pool" value="Pool:"/>
+                <p:selectOneMenu value="#{poolSaleController.currentEvent.pool}">
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItems value="#{poolController.items}"
+                                   var="p"
+                                   itemLabel="#{p.style}-#{p.shape}" itemValue="#{p}"/>
+                    
+                </p:selectOneMenu>
+                <br/>
+                <h:outputLabel id="storeNameLabel" for="storeName" value="Store Name: "/>
+                <p:inputText id="storeName" value="#{poolSaleController.currentEvent.storeName}"/>
+                <br/>
+                <br/>
+                <p:commandButton actionListener="#{poolSaleController.onlineSaleAction()}"
+                                 value="Submit Sale"
+                                 update="@form, messages"/>
+            </h:form>
+            </p:panel>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

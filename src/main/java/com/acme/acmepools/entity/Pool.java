@@ -9,6 +9,7 @@ package com.acme.acmepools.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,18 +58,25 @@ import javax.xml.bind.annotation.XmlTransient;
 
 
 public class Pool implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
-    private Integer id;
+
     @Size(max = 10)
     @Column(name = "STYLE")
     private String style;
     @Size(max = 10)
     @Column(name = "SHAPE")
     private String shape;
+    @Column(name = "SHALLOW_DEPTH")
+    private Integer shallowDepth;
+    @Column(name = "DEEP_DEPTH")
+    private Integer deepDepth;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "poolId")
+    private Collection<PoolSale> poolSaleCollection;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID")
+    private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "LENGTH")
     private Double length;
@@ -78,10 +86,6 @@ public class Pool implements Serializable {
     private Double radius;
     @Column(name = "GALLONS")
     private Double gallons;
-    @Column(name = "SHALLOW_DEPTH")
-    private Double shallowDepth;
-    @Column(name = "DEEP_DEPTH")
-    private Double deepDepth;
 
     public Pool() {
     }
@@ -102,21 +106,6 @@ public class Pool implements Serializable {
         this.id = id;
     }
 
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style;
-    }
-
-    public String getShape() {
-        return shape;
-    }
-
-    public void setShape(String shape) {
-        this.shape = shape;
-    }
 
     public Double getLength() {
         return length;
@@ -175,32 +164,47 @@ public class Pool implements Serializable {
         return "com.acme.acmepools.entity.util.Pool[ id=" + id + " ]";
     }
 
-    /**
-     * @return the shallowDepth
-     */
-    public Double getShallowDepth() {
+   
+    
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
+
+    public Integer getShallowDepth() {
         return shallowDepth;
     }
 
-    /**
-     * @param shallowDepth the shallowDepth to set
-     */
-    public void setShallowDepth(Double shallowDepth) {
+    public void setShallowDepth(Integer shallowDepth) {
         this.shallowDepth = shallowDepth;
     }
 
-    /**
-     * @return the deepDepth
-     */
-    public Double getDeepDepth() {
+    public Integer getDeepDepth() {
         return deepDepth;
     }
 
-    /**
-     * @param deepDepth the deepDepth to set
-     */
-    public void setDeepDepth(Double deepDepth) {
+    public void setDeepDepth(Integer deepDepth) {
         this.deepDepth = deepDepth;
+    }
+
+    @XmlTransient
+    public Collection<PoolSale> getPoolSaleCollection() {
+        return poolSaleCollection;
+    }
+
+    public void setPoolSaleCollection(Collection<PoolSale> poolSaleCollection) {
+        this.poolSaleCollection = poolSaleCollection;
     }
     
 }
