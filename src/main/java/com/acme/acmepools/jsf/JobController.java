@@ -6,6 +6,8 @@ import com.acme.acmepools.entity.util.JsfUtil;
 import com.acme.acmepools.entity.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -56,10 +58,14 @@ public class JobController implements Serializable {
     }
 
     public void create() {
+         // Find max CUSTOMER_ID and add one
+        Job maxJob =  Collections.max(getItems(), Comparator.comparing(j -> j.getId()));
+        selected.setId(maxJob.getId() + 1);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("JobCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        items = null;
     }
 
     public void update() {

@@ -12,15 +12,15 @@
             <h:form id="JobEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{jobController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditJobLabel_id}" for="id" />
+                        <p:outputLabel value="ID" for="id" />
                         <p:inputText id="id" value="#{jobController.selected.id}" title="#{bundle.EditJobTitle_id}" required="true" requiredMessage="#{bundle.EditJobRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditJobLabel_description}" for="description" />
+                        <p:outputLabel value="Description" for="description" />
                         <p:inputTextarea rows="4" cols="30" id="description" value="#{jobController.selected.description}" title="#{bundle.EditJobTitle_description}" />
-                        <p:outputLabel value="#{bundle.EditJobLabel_estHours}" for="estHours" />
+                        <p:outputLabel value="st Hours" for="estHours" />
                         <p:inputText id="estHours" value="#{jobController.selected.estHours}" title="#{bundle.EditJobTitle_estHours}" />
-                        <p:outputLabel value="#{bundle.EditJobLabel_cost}" for="cost" />
+                        <p:outputLabel value="Cost" for="cost" />
                         <p:inputText id="cost" value="#{jobController.selected.cost}" title="#{bundle.EditJobTitle_cost}" />
-                        <p:outputLabel value="#{bundle.EditJobLabel_customerId}" for="customerId" />
+                        <p:outputLabel value="Customer" for="customerId" />
                         <p:selectOneMenu id="customerId" value="#{jobController.selected.customerId}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{customerController.itemsAvailableSelectOne}"
@@ -28,8 +28,8 @@
                                            itemValue="#{customerIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{jobController.update}" value="#{bundle.Save}" update="display,:JobListForm:datalist,:growl" oncomplete="handleSubmit(args, 'JobEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="JobEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{jobController.update}" value="Save" update="display,:JobListForm:datalist,:growl" oncomplete="handleSubmit(args, 'JobEditDialog');"/>
+                    <p:commandButton value="Cancel" onclick="JobEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

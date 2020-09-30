@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="JobListForm">
-                <p:panel header="#{bundle.ListJobTitle}">
+                <p:panel header="Job Listing">
                     <p:dataTable id="datalist" value="#{jobController.items}" var="item"
                                  selectionMode="single" selection="#{jobController.selected}"
                                  paginator="true"
@@ -29,39 +29,47 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListJobTitle_id}"/>
+                                <h:outputText value="ID"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListJobTitle_description}"/>
+                                <h:outputText value="Work Date"/>
+                            </f:facet>
+                            <h:outputText value="#{item.workDate}">
+                                <f:convertDateTime type="localDate" pattern="MM/dd/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListJobTitle_estHours}"/>
+                                <h:outputText value="Est Jours"/>
                             </f:facet>
                             <h:outputText value="#{item.estHours}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListJobTitle_cost}"/>
+                                <h:outputText value="Cost"/>
                             </f:facet>
                             <h:outputText value="#{item.cost}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListJobTitle_customerId}"/>
+                                <h:outputText value="Customer ID"/>
                             </f:facet>
                             <h:outputText value="#{item.customerId}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{jobController.prepareCreate}" update=":JobCreateForm" oncomplete="PF('JobCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":JobViewForm" oncomplete="PF('JobViewDialog').show()" disabled="#{empty jobController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":JobEditForm" oncomplete="PF('JobEditDialog').show()" disabled="#{empty jobController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{jobController.destroy}" update=":growl,datalist" disabled="#{empty jobController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value=".Create" actionListener="#{jobController.prepareCreate}" update=":JobCreateForm" oncomplete="PF('JobCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="View" update=":JobViewForm" oncomplete="PF('JobViewDialog').show()" disabled="#{empty jobController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Edit" update=":JobEditForm" oncomplete="PF('JobEditDialog').show()" disabled="#{empty jobController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Delete" actionListener="#{jobController.destroy}" update=":growl,datalist" disabled="#{empty jobController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

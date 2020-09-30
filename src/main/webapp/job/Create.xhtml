@@ -12,23 +12,24 @@
             <h:form id="JobCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{jobController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateJobLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{jobController.selected.id}" title="#{bundle.CreateJobTitle_id}" required="true" requiredMessage="#{bundle.CreateJobRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateJobLabel_description}" for="description" />
-                        <p:inputTextarea rows="4" cols="30" id="description" value="#{jobController.selected.description}" title="#{bundle.CreateJobTitle_description}" />
-                        <p:outputLabel value="#{bundle.CreateJobLabel_estHours}" for="estHours" />
-                        <p:inputText id="estHours" value="#{jobController.selected.estHours}" title="#{bundle.CreateJobTitle_estHours}" />
-                        <p:outputLabel value="#{bundle.CreateJobLabel_cost}" for="cost" />
-                        <p:inputText id="cost" value="#{jobController.selected.cost}" title="#{bundle.CreateJobTitle_cost}" />
-                        <p:outputLabel value="#{bundle.CreateJobLabel_customerId}" for="customerId" />
+                        
+                        <p:outputLabel value="Description" for="description" />
+                        <p:inputTextarea rows="4" cols="30" id="description" value="#{jobController.selected.description}" title="Description" />
+                        <p:outputLabel value="Work Date" for="workDate"/>
+                        <p:calendar id="workDate" value="#{jobController.selected.workDate}"/>
+                        <p:outputLabel value="Est Hours" for="estHours" />
+                        <p:inputText id="estHours" value="#{jobController.selected.estHours}" title="Est Hours" />
+                        <p:outputLabel value="Cost" for="cost" />
+                        <p:inputText id="cost" value="#{jobController.selected.cost}" title="Cost" />
+                        <p:outputLabel value="Customer" for="customerId" />
                         <p:selectOneMenu id="customerId" value="#{jobController.selected.customerId}" >
                             <f:selectItems value="#{customerController.itemsAvailableSelectOne}"
                                            var="customerIdItem"
                                            itemValue="#{customerIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{jobController.create}" value="#{bundle.Save}" update="display,:JobListForm:datalist,:growl" oncomplete="handleSubmit(args,'JobCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="JobCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{jobController.create}" value="Save" update="display,:JobListForm:datalist,:growl" oncomplete="handleSubmit(args,'JobCreateDialog');"/>
+                    <p:commandButton value="Cancel" onclick="JobCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

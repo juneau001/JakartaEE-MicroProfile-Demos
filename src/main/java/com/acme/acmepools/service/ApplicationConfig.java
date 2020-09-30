@@ -35,6 +35,8 @@ public class ApplicationConfig extends Application {
         resources.add(com.acme.acmepools.service.CustomerFacadeREST.class);
         resources.add(com.acme.acmepools.service.DiscountCodeFacadeREST.class);
         resources.add(com.acme.acmepools.service.MicroMarketFacadeREST.class);
+        resources.add(com.acme.acmepools.service.SseEventBroadcaster.class);
+        resources.add(com.acme.acmepools.service.SseEventResource.class);
     }
     
 }

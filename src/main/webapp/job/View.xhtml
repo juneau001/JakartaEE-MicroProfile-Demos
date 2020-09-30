@@ -12,18 +12,18 @@
             <h:form id="JobViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{jobController.selected != null}">
-                        <h:outputText value="#{bundle.ViewJobLabel_id}"/>
+                        <h:outputText value="ID"/>
                         <h:outputText value="#{jobController.selected.id}" title="#{bundle.ViewJobTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewJobLabel_description}"/>
+                        <h:outputText value="Description"/>
                         <h:outputText value="#{jobController.selected.description}" title="#{bundle.ViewJobTitle_description}"/>
-                        <h:outputText value="#{bundle.ViewJobLabel_estHours}"/>
+                        <h:outputText value="Est Hours"/>
                         <h:outputText value="#{jobController.selected.estHours}" title="#{bundle.ViewJobTitle_estHours}"/>
-                        <h:outputText value="#{bundle.ViewJobLabel_cost}"/>
+                        <h:outputText value="Cost"/>
                         <h:outputText value="#{jobController.selected.cost}" title="#{bundle.ViewJobTitle_cost}"/>
-                        <h:outputText value="#{bundle.ViewJobLabel_customerId}"/>
+                        <h:outputText value="Customer"/>
                         <h:outputText value="#{jobController.selected.customerId}" title="#{bundle.ViewJobTitle_customerId}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="JobViewDialog.hide()"/>
+                    <p:commandButton value="Close" onclick="JobViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
