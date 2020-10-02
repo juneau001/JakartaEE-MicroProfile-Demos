@@ -37,6 +37,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.simple.employeeclient.constants.ApplicationConstants;
 import org.simple.employeeclient.observer.NewHire;
 
 @Named("acmeEmployeeController")
@@ -64,7 +65,7 @@ public class AcmeEmployeeController implements Serializable {
     @PostConstruct
     public void init(){
         Client client = ClientBuilder.newClient();
-        items = client.target("http://localhost:8080/EmployeeService/rest/acmeEmployeeService")
+        items = client.target(ApplicationConstants.REST_PATH + "acmeEmployeeService")
                 .request("application/json")
                 .get(new GenericType<List<AcmeEmployee>>() {
                 }
@@ -78,13 +79,13 @@ public class AcmeEmployeeController implements Serializable {
      */
     public void initReactive(){
         CompletionStage<Response> response = ClientBuilder.newClient()
-                .target("http://localhost:8096/EmployeeService-1.0/rest/acmeEmployeeService")
+                .target(ApplicationConstants.REST_PATH + "acmeEmployeeService")
                 .request().rx().get();
     }
     
     public void obtainEmployee(){
         Client client = ClientBuilder.newClient();
-        items = client.target("http://localhost:8096/EmployeeService-1.0/rest/acmeEmployeeService")
+        items = client.target(ApplicationConstants.REST_PATH + "acmeEmployeeService")
                 .request("application/json")
                 .get(new GenericType<List<AcmeEmployee>>() {
                 }
@@ -152,7 +153,7 @@ public class AcmeEmployeeController implements Serializable {
     public void create(){
         System.out.println("Submitting..." + selected.getLastName());
         WebTarget resource = ClientBuilder.newClient()
-                .target("http://localhost:8096/EmployeeService-1.0/rest/acmeEmployeeService")
+                .target(ApplicationConstants.REST_PATH + "acmeEmployeeService")
                 .path("createEmployee");
  
             String empStart = selected.getStartDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
@@ -177,6 +178,8 @@ public class AcmeEmployeeController implements Serializable {
                             System.out.println("there is an issue");
                         } else {
                              System.out.println("new employee created");
+                             JsfUtil.addSuccessMessage("Successfully Created Employee");
+                             init();
                         }
                     });
                         

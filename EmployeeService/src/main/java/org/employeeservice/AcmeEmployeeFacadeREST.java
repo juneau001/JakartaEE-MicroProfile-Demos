@@ -7,6 +7,8 @@ package org.employeeservice;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -76,9 +78,12 @@ public class AcmeEmployeeFacadeREST {
             @FormParam("age") String age,
             @FormParam("startDate") String startDate) {
         boolean success = false;
+        // Find max CUSTOMER_ID and add one
+        AcmeEmployee maxEmp =  Collections.max(findAll(), Comparator.comparing(c -> c.getId()));
         AcmeEmployee emp = new AcmeEmployee();
         try {
-            emp.setId(count() + 1);
+            
+            emp.setId(maxEmp.getId() + 1);
             emp.setFirstName(firstName.toUpperCase());
             emp.setLastName(lastName.toUpperCase());
             emp.setAge(Integer.valueOf(age));
@@ -100,6 +105,7 @@ public class AcmeEmployeeFacadeREST {
     
     private int count(){
         Long empCount =  (Long) em.createQuery("select count(o) from AcmeEmployee o").getSingleResult();
+        System.out.println("the current employee count: " + empCount);
         return empCount.intValue();
     }
 

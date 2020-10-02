@@ -71,17 +71,18 @@
 
 
                     <p:outputLabel for="startDate" value="Start Date: "/>
-                    <p:inputText id="startDate"  
+                    <p:calendar id="startDate"
                                  value="#{acmeEmployeeController.selected.startDate}">
-                        <f:convertDateTime type="localDate" pattern="MM/dd/yyyy"/>
-                    </p:inputText>
+                      
+                    </p:calendar>
+      
 
 
                 </p:panelGrid>
                 <br/><br/>
 
-                <p:commandButton id="loadEmps2" value="Create Object from JSON"
-                                 update="empMessage" 
+                <p:commandButton id="loadEmps2" value="Create Employee"
+                                 update="empMessage,empTable" 
                                  onstart="PF('updateDialog').show();"
                                  oncomplete="PF('updateDialog').hide();"
                                  action="#{acmeEmployeeController.create}"/>

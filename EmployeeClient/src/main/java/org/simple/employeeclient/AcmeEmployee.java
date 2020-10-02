@@ -23,40 +23,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Josh Juneau <juneau at fnal.gov>
  */
-@Entity
-@Table(name = "ACME_EMPLOYEE")
+
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "AcmeEmployee.findAll", query = "SELECT a FROM AcmeEmployee a")
-    , @NamedQuery(name = "AcmeEmployee.findById", query = "SELECT a FROM AcmeEmployee a WHERE a.id = :id")
-    , @NamedQuery(name = "AcmeEmployee.findByFirstName", query = "SELECT a FROM AcmeEmployee a WHERE a.firstName = :firstName")
-    , @NamedQuery(name = "AcmeEmployee.findByLastName", query = "SELECT a FROM AcmeEmployee a WHERE a.lastName = :lastName")
-    , @NamedQuery(name = "AcmeEmployee.findByStartDate", query = "SELECT a FROM AcmeEmployee a WHERE a.startDate = :startDate")
-    , @NamedQuery(name = "AcmeEmployee.findByAge", query = "SELECT a FROM AcmeEmployee a WHERE a.age = :age")
-    , @NamedQuery(name = "AcmeEmployee.findByJobId", query = "SELECT a FROM AcmeEmployee a WHERE a.jobId = :jobId")
-    , @NamedQuery(name = "AcmeEmployee.findByStatus", query = "SELECT a FROM AcmeEmployee a WHERE a.status = :status")})
+
 public class AcmeEmployee implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
     private Integer id;
     @Size(max = 50)
-    @Column(name = "FIRST_NAME")
     private String firstName;
     //@Size(max = 50)  
-    @Column(name = "LAST_NAME")
     private String lastName;
     //@PastOrPresent
-    @Column(name = "START_DATE")
     private LocalDate startDate;
-    @Column(name = "AGE")
     private Integer age;
-    @Column(name = "JOB_ID")
     private Integer jobId;
-    
-    @Column(name = "STATUS")
     private String status;
 
     public AcmeEmployee() {
