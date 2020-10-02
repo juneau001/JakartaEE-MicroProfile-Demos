@@ -3,3 +3,9 @@
 Application Name: AcmePools-JakartaEE8
 
 To run application once deployed to local server, point URL to: http://localhost:8080/AcmePools-JakartaEE8/
+
+This app uses an Apache Derby database that can be started with Docker Compose:
+
+```
+docker-compose up
+```

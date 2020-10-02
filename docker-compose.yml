@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  redis:
+    image: "az82/docker-derby:v1.5"
+    ports:
+      - "1527:1527"
