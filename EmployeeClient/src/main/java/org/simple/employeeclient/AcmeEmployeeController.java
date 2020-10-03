@@ -1,32 +1,18 @@
 package org.simple.employeeclient;
 
 import org.simple.employeeclient.util.JsfUtil;
-import org.simple.employeeclient.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.concurrent.CompletionStage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Event;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -34,16 +20,27 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.simple.employeeclient.constants.ApplicationConstants;
 import org.simple.employeeclient.observer.NewHire;
 
 @Named("acmeEmployeeController")
-@SessionScoped
-public class AcmeEmployeeController implements Serializable {
+@ViewScoped
+public class AcmeEmployeeController implements java.io.Serializable {
     
+//    @Inject
+//    @ConfigProperty(name="SERVICE_HOST_NAME", defaultValue="localhost")
+//    private String serviceHost;
+//    
+//    @Inject
+//    @ConfigProperty(name="SERVICE_PORT")
+//    private String servicePort;
+//    
+//    @Inject
+//    @ConfigProperty(name="SERVICE_NAME")
+//    private String employeeService;
     
     @Inject
     @NewHire
@@ -58,14 +55,17 @@ public class AcmeEmployeeController implements Serializable {
     private String returnMessage2;
     
     private String empJson;
+    private String employeeServicePath;
 
     public AcmeEmployeeController() {
     }
     
     @PostConstruct
     public void init(){
+        //employeeServicePath = "http://" + serviceHost + ":" + servicePort + "/" + employeeService + "/acmeEmployeeService";
+        employeeServicePath = ApplicationConstants.REST_PATH + "acmeEmployeeService";
         Client client = ClientBuilder.newClient();
-        items = client.target(ApplicationConstants.REST_PATH + "acmeEmployeeService")
+        items = client.target(employeeServicePath)
                 .request("application/json")
                 .get(new GenericType<List<AcmeEmployee>>() {
                 }
