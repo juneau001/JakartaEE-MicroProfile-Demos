@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Employee Examples</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
@@ -13,8 +13,7 @@
             <p:dialog id="updateDialog" widgetVar="updateDialog" modal="true" closable="false">
                 <p:graphicImage library="images" name="ajaxloading-bar.gif"/>
             </p:dialog>
-            Hello from Facelets
-            <br />
+
             <p:dataTable id="empTable" value="#{acmeEmployeeController.items}" var="emp">
                 <p:column headerText="First">
                     <h:outputText value="#{emp.firstName}"/>
@@ -87,6 +86,21 @@
                                  oncomplete="PF('updateDialog').hide();"
                                  action="#{acmeEmployeeController.create}"/>
             </h:form>
+            
+            <hr/>
+            <h:form id="eventForm">
+                <p:messages id="eventMessage"/>
+                <br/>
+                <p:commandButton id="registrationButon" actionListener="#{sseClient.listen}"
+                                 update="eventMessage" title="Look at system.out for details"
+                                 value="Receive Employee Events"/>
+                <br/>
+                <br/>
+                <a href="faces/sse.xhtml">SSE Broadcasting</a>
+                <br/>
+            </h:form>
+            
+            
 
         </f:view>
     </h:body>

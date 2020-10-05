@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.model.DualListModel;
 
@@ -18,7 +18,7 @@ import org.primefaces.model.DualListModel;
  * @author Juneau
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class ColumnModelController implements Serializable {
 
     @EJB

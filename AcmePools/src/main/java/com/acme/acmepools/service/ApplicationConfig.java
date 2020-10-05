@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.acme.acmepools.service.ColumnModelFacadeREST.class);
         resources.add(com.acme.acmepools.service.CustomerFacadeREST.class);
         resources.add(com.acme.acmepools.service.DiscountCodeFacadeREST.class);
         resources.add(com.acme.acmepools.service.MicroMarketFacadeREST.class);
