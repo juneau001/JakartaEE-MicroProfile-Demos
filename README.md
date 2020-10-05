@@ -7,5 +7,5 @@ To run application once deployed to local server, point URL to: http://localhost
 This app uses an Apache Derby database that can be started with Docker Compose:
 
 ```
-docker-compose up
+mvn clean verify && docker-compose up --build
 ```

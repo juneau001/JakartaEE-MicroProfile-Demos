@@ -10,6 +10,6 @@ package org.simple.employeeclient.constants;
  * @author Juneau
  */
 public class ApplicationConstants {
-    public static final String REST_PATH ="http://localhost:8080/EmployeeService/rest/";
+    public static final String REST_PATH ="http://localhost:8080/employee-service/rest/";
     public static final String EVENT_REST_PATH ="http://localhost:8080/EmployeeEvent/rest/";
 }

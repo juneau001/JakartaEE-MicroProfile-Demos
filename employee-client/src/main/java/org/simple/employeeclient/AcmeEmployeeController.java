@@ -1,16 +1,14 @@
 package org.simple.employeeclient;
 
+import org.simple.employeeclient.constants.ApplicationConstants;
+import org.simple.employeeclient.observer.NewHire;
 import org.simple.employeeclient.util.JsfUtil;
 
-import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.concurrent.CompletionStage;
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
 import javax.enterprise.event.Event;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.client.Client;
@@ -22,9 +20,9 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.simple.employeeclient.constants.ApplicationConstants;
-import org.simple.employeeclient.observer.NewHire;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.concurrent.CompletionStage;
 
 @Named("acmeEmployeeController")
 @ViewScoped
