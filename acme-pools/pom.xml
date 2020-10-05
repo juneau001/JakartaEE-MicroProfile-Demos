@@ -14,7 +14,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.finalName>simple-hello</project.build.finalName>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <version.jakartaee>8.0.0</version.jakartaee>
     </properties>
@@ -62,6 +61,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

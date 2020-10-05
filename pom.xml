@@ -7,10 +7,6 @@
     <version>1.0</version>
     <packaging>pom</packaging>
 
-    <properties>
-        <project.build.finalName>${project.artifactId}</project.build.finalName>
-    </properties>
-
     <modules>
         <module>employee-service</module>
         <module>employee-client</module>
