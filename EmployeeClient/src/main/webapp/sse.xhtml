@@ -15,7 +15,6 @@ and open the template in the editor.
             var eventSource = new EventSource("http://localhost:8080/EmployeeEvent/rest/ssebroadcaster/register");
             if (typeof (EventSource) !== "undefined") {
                 eventSource.onmessage = function (event) {
-                    alert("message");
                     document.getElementById("result").innerHTML += event.data + "<br/>";
                 };
             } else {
