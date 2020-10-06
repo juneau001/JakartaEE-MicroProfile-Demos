@@ -4,6 +4,14 @@ services:
     image: "az82/docker-derby:v1.5"
     ports:
       - "1527:1527"
+  employee-event:
+    image: employee-event
+    build:
+      context: employee-event/
+    ports:
+      - "8090:8080"
+    depends_on:
+      - derby
   employee-service:
     image: employee-service
     build:
@@ -12,7 +20,6 @@ services:
       - "8080:8080"
     depends_on:
       - derby
-
   employee-client:
     image: employee-client
     build:
@@ -20,4 +27,5 @@ services:
     ports:
       - "9090:8080"
     depends_on:
-      - derby
+      - employee-service
+      - employee-event
