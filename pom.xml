@@ -8,6 +8,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>employee-event</module>
         <module>employee-service</module>
         <module>employee-client</module>
     </modules>
