@@ -1,7 +1,7 @@
 FROM payara/micro:latest
 
 # Downloads the Apache Derby Client library
-RUN wget -O /opt/payara/deployments/database-connector.jar http://central.maven.org/maven2/org/apache/derby/derbyclient/10.14.1.0/derbyclient-10.14.1.0.jar
+RUN wget -O /opt/payara/deployments/database-connector.jar https://search.maven.org/remotecontent?filepath=org/apache/derby/derbyclient/10.14.1.0/derbyclient-10.14.1.0.jar
 
 # Adds an application to be loaded
 ADD ./target/employee-service.war /opt/payara/deployments
