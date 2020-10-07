@@ -14,6 +14,10 @@ services:
       - derby
   employee-service:
     image: employee-service
+    environment:
+      - DB_NAME=sample
+      - DB_USER=app
+      - DB_PASSWORD=app
     build:
       context: employee-service/
     ports:

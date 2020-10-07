@@ -60,10 +60,16 @@
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
+            <artifactId>derby</artifactId>
             <version>10.14.1.0</version>
         </dependency>
-    </dependencies>
+          <dependency>
+               <groupId>jakarta.xml.bind</groupId>
+               <artifactId>jakarta.xml.bind-api</artifactId>
+               <version>2.3.3</version>
+               <type>jar</type>
+          </dependency>
+     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
