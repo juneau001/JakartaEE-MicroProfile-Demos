@@ -18,6 +18,8 @@ services:
       - DB_NAME=sample
       - DB_USER=app
       - DB_PASSWORD=app
+      - DB_PORT=1527
+      - DOCKER_HOST=http://${DOCKER_GATEWAY_HOST:-host.docker.internal}
     build:
       context: employee-service/
     ports:
