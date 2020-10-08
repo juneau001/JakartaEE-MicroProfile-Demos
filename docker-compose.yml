@@ -1,9 +1,16 @@
 version: "3.8"
 services:
   derby:
-    image: "az82/docker-derby:v1.5"
+    image: az82/docker-derby:v1.5
     ports:
       - "1527:1527"
+  flyway:
+    image: flyway/flyway:7.0.1-alpine
+    command: -url=jdbc:derby://derby:1527/sample;create=true -user=app -password=app -connectRetries=60 migrate
+    volumes:
+      - ./employee-service/flyway/sql:/flyway/sql
+    depends_on:
+      - derby
   employee-event:
     image: employee-event
     build:
