@@ -2,8 +2,8 @@ version: "3.8"
 services:
   derby:
     image: az82/docker-derby:v1.5
-    ports:
-      - "1527:1527"
+    networks:
+      - backend
   flyway:
     image: flyway/flyway:7.0.1-alpine
     command: -url=jdbc:derby://derby:1527/sample;create=true -user=app -password=app -connectRetries=60 migrate
@@ -11,14 +11,18 @@ services:
       - ./employee-service/flyway/sql:/flyway/sql
     depends_on:
       - derby
+    networks:
+      - backend
   employee-event:
     image: employee-event
     build:
       context: employee-event/
-    ports:
-      - "8090:8080"
+    #    ports:
+    #      - "8090:8080"
     depends_on:
       - derby
+    networks:
+      - backend
   employee-service:
     image: employee-service
     environment:
@@ -29,16 +33,24 @@ services:
       - DOCKER_HOST=derby
     build:
       context: employee-service/
-    ports:
-      - "8080:8080"
+    #    ports:
+    #      - "8091:8080"
     depends_on:
       - derby
+    networks:
+      - backend
   employee-client:
     image: employee-client
     build:
       context: employee-client/
     ports:
-      - "9090:8080"
+      - "8080:8080"
     depends_on:
       - employee-service
       - employee-event
+    networks:
+      - frontend
+      - backend
+networks:
+  backend:
+  frontend:
