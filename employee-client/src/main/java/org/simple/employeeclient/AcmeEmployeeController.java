@@ -23,22 +23,14 @@ import javax.ws.rs.core.Response;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @Named("acmeEmployeeController")
 @ViewScoped
 public class AcmeEmployeeController implements java.io.Serializable {
-    
-//    @Inject
-//    @ConfigProperty(name="SERVICE_HOST_NAME", defaultValue="localhost")
-//    private String serviceHost;
-//    
-//    @Inject
-//    @ConfigProperty(name="SERVICE_PORT")
-//    private String servicePort;
-//    
-//    @Inject
-//    @ConfigProperty(name="SERVICE_NAME")
-//    private String employeeService;
+   
+    @Inject
+    AcmeEmployeeConfig config;
     
     @Inject
     @NewHire
@@ -60,8 +52,9 @@ public class AcmeEmployeeController implements java.io.Serializable {
     
     @PostConstruct
     public void init(){
-        //employeeServicePath = "http://" + serviceHost + ":" + servicePort + "/" + employeeService + "/acmeEmployeeService";
-        employeeServicePath = ApplicationConstants.REST_PATH + "acmeEmployeeService";
+        System.out.println("config: " + "http://" + config.getServiceHost() + ":" + config.getServicePort() + "/" + config.getEmployeeService() + "/acmeEmployeeService");
+        employeeServicePath = "http://" + config.getServiceHost() + ":" + config.getServicePort() + "/" + config.getEmployeeService() + "/acmeEmployeeService";
+        //employeeServicePath = ApplicationConstants.REST_PATH + "acmeEmployeeService";
         Client client = ClientBuilder.newClient();
         items = client.target(employeeServicePath)
                 .request("application/json")
