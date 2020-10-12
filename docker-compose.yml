@@ -33,8 +33,8 @@ services:
       - DOCKER_HOST=derby
     build:
       context: employee-service/
-    #    ports:
-    #      - "8091:8080"
+    ports:
+      - "8091:8080"
     depends_on:
       - derby
     networks:

@@ -5,9 +5,10 @@
  */
 package org.simple.employeeclient;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  *
@@ -17,7 +18,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 public class AcmeEmployeeConfig {
     
     @Inject
-    @ConfigProperty(name="service.host.name", defaultValue="localhost")
+    @ConfigProperty(name="server.host.name", defaultValue="localhost")
     private String serviceHost;
     
     @Inject
