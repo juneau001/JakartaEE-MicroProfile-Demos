@@ -12,7 +12,7 @@ and open the template in the editor.
     <h:head>
         <script type="text/javascript">
             var i = 1;
-            var eventSource = new EventSource("http://employee-service:8080/EmployeeEvent/rest/ssebroadcaster/register");
+            var eventSource = new EventSource("http://localhost:8080/employee-event/rest/ssebroadcaster/register");
             if (typeof (EventSource) !== "undefined") {
                 eventSource.onmessage = function (event) {
                     document.getElementById("result").innerHTML += event.data + "<br/>";
@@ -23,6 +23,7 @@ and open the template in the editor.
 
             // After SSE handshake constructed
             eventSource.onopen = function (e) {
+                alert("open");
                 console.log("Waiting message..");
             };
 

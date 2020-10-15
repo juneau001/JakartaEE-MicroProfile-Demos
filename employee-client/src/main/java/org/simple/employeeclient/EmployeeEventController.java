@@ -13,6 +13,7 @@ import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -30,6 +31,9 @@ import org.simple.employeeclient.constants.ApplicationConstants;
 @Named
 @ViewScoped
 public class EmployeeEventController implements java.io.Serializable {
+    
+    @Inject
+    AcmeEmployeeConfig config;
     
     private Client client;
     
@@ -49,9 +53,11 @@ public class EmployeeEventController implements java.io.Serializable {
     
     
     public void sendEvent() throws URISyntaxException, InterruptedException, ExecutionException {
+        String eventService = "http://" + config.getServiceHost() + ":" + config.getServicePort() + "/" + config.getEventService();
         WebTarget target = client
-                .target(ApplicationConstants.EVENT_REST_PATH)
+                .target(eventService)
                 .path("ssebroadcaster/broadcast");
+        System.out.println("UrL:" + target.getUri());
         
         Form form = new Form();
         form.param("message", message);

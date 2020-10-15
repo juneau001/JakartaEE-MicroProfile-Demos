@@ -16,6 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <version.jakartaee>8.0.0</version.jakartaee>
+        <microprofile.config.version>1.4</microprofile.config.version>
     </properties>
 
      <dependencies>
@@ -62,6 +63,12 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
             <version>10.14.1.0</version>
+        </dependency>
+         <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <version>${microprofile.config.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

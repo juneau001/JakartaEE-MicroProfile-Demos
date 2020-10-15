@@ -12,18 +12,8 @@ import org.simple.employeeclient.EmployeeEvent;
  *
  * @author Juneau
  */
-public class EmployeeEventHandler {
+public interface EmployeeEventHandler {
+    
+    public void notifyManager ( EmployeeEvent event);
 
-    
-    public EmployeeEventHandler(){
-        
-    }
-    
-    public void notifyManager (@ObservesAsync @NewHire EmployeeEvent event) {
-       
-            System.out.println("Sending Notification to Manager: New Hire " + event.getFirstName() + " " + event.getLastName()) ;
-        
-    }
-    
-   
 }

@@ -12,6 +12,14 @@ package org.simple.employeeclient;
 public class EmployeeEvent {
     private String lastName;
     private String firstName;
+    
+    public EmployeeEvent(){}
+    
+    public EmployeeEvent(String firstName,
+                         String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     /**
      * @return the lastName

@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -21,6 +22,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.sse.OutboundSseEvent;
 import javax.ws.rs.sse.Sse;
 import javax.ws.rs.sse.SseEventSink;
+import org.employeeevent.AcmeEmployeeConfig;
 import org.employeeevent.constants.ApplicationConstants;
 import org.employeeevent.model.AcmeEmployee;
 
@@ -31,6 +33,9 @@ import org.employeeevent.model.AcmeEmployee;
 @Path("sse")
 @RequestScoped
 public class SseEventResource {
+    
+    @Inject
+    AcmeEmployeeConfig config;
 
     @Resource(name = "DefaultManagedExecutorService")
     ManagedExecutorService executor;
@@ -45,7 +50,7 @@ public class SseEventResource {
     @PostConstruct
     public void init() {
         //employeeServicePath = "http://" + serviceHost + ":" + servicePort + "/" + employeeService + "/acmeEmployeeService";
-        employeeServicePath = ApplicationConstants.REST_PATH + "acmeEmployeeService";
+        employeeServicePath = "http://" + config.getServiceHost() + ":" + config.getServicePort() + "/" + config.getEmployeeService() + "/acmeEmployeeService";
         Client client = ClientBuilder.newClient();
         items = client.target(employeeServicePath)
                 .request("application/json")

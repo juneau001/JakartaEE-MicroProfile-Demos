@@ -9,6 +9,7 @@ import org.simple.employeeclient.constants.ApplicationConstants;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -19,6 +20,9 @@ import javax.ws.rs.sse.SseEventSource;
 @RequestScoped
 public class SseClient {
 
+    @Inject
+    AcmeEmployeeConfig config;
+    
     private Client client;
 
     @PostConstruct
@@ -28,7 +32,8 @@ public class SseClient {
 
 
     public void listen() {
-        WebTarget target = client.target(ApplicationConstants.EVENT_REST_PATH + "sse/employees");
+        String eventService = "http://" + config.getServiceHost() + ":" + config.getServicePort() + "/" + config.getEventService();
+        WebTarget target = client.target(eventService).path("sse/employees");
         try (SseEventSource source = SseEventSource.target(target).build()) {
             source.register(System.out::println);
             source.open();
