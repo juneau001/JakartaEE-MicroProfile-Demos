@@ -15,6 +15,8 @@ services:
       - backend
   employee-event:
     image: employee-event
+    environment:
+      - service.host.name=employee-service
     build:
       context: employee-event/
     #    ports:
@@ -41,6 +43,8 @@ services:
       - backend
   employee-client:
     image: employee-client
+    environment:
+      - service.host.name=employee-service
     build:
       context: employee-client/
     ports:
