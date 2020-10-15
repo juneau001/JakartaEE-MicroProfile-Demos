@@ -23,6 +23,8 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -106,6 +108,16 @@ public class AcmeEmployeeFacadeREST {
         Long empCount =  (Long) em.createQuery("select count(o) from AcmeEmployee o").getSingleResult();
         System.out.println("the current employee count: " + empCount);
         return empCount.intValue();
+    }
+    
+    public List<AcmeEmployee> performFindByEmployeeStream(AcmeEmployee employee){
+        Stream<AcmeEmployee> empStream = em.createQuery("select object(o) from AcmeEmployee o")
+                    .getResultStream();
+                     
+        return empStream.filter(
+            emp -> employee.equals(emp.getId()))
+	   .collect(Collectors.toList());
+        
     }
 
 }
