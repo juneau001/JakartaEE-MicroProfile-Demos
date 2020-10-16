@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.jakartaee>8.0.0</version.jakartaee>
-        <microprofile.config.version>1.4</microprofile.config.version>
+        <version.microprofile>3.3</version.microprofile>
     </properties>
     
     <dependencies>
@@ -46,11 +46,11 @@
             <version>${version.jakartaee}</version>
             <scope>provided</scope>
         </dependency>
-         <dependency>
-            <groupId>org.eclipse.microprofile.config</groupId>
-            <artifactId>microprofile-config-api</artifactId>
-            <version>${microprofile.config.version}</version>
-            <scope>provided</scope>
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>${version.microprofile}</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
 

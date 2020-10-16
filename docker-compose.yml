@@ -17,6 +17,7 @@ services:
     image: employee-event
     environment:
       - service.host.name=employee-service
+      - org.simple.employeeclient.AcmeEmployeeServiceClient/mp-rest/url=http://employee-service:8080/employee-service/rest/
     build:
       context: employee-event/
     #    ports:
@@ -45,6 +46,7 @@ services:
     image: employee-client
     environment:
       - service.host.name=employee-service
+      - org.simple.employeeclient.AcmeEmployeeServiceClient/mp-rest/url=http://employee-service:8080/employee-service/rest/
     build:
       context: employee-client/
     ports:

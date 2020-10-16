@@ -1,16 +1,21 @@
 package org.simple.employeeclient;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import org.simple.employeeclient.constants.ApplicationConstants;
 import org.simple.employeeclient.observer.NewHire;
 import org.simple.employeeclient.util.JsfUtil;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.event.Event;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonPointer;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.client.Client;
@@ -22,16 +27,10 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonPointer;
-import javax.json.JsonValue;
 
 @Named("acmeEmployeeController")
 @ViewScoped
@@ -57,6 +56,10 @@ public class AcmeEmployeeController implements java.io.Serializable {
     private String replacementString;
     private String searchResult;
 
+//    @Inject
+//    @RestClient
+//    private AcmeEmployeeServiceClient acmeEmployeeServiceClient;
+
     public AcmeEmployeeController() {
     }
 
@@ -70,6 +73,7 @@ public class AcmeEmployeeController implements java.io.Serializable {
                 .get(new GenericType<List<AcmeEmployee>>() {
                 }
                 );
+//        items = acmeEmployeeServiceClient.findAll();
     }
 
     /**

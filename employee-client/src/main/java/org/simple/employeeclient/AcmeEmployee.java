@@ -5,19 +5,11 @@
  */
 package org.simple.employeeclient;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  *
@@ -35,7 +27,7 @@ public class AcmeEmployee implements Serializable {
     //@Size(max = 50)  
     private String lastName;
     //@PastOrPresent
-    private LocalDate startDate;
+    private LocalDate startDate = null;
     private Integer age;
     private Integer jobId;
     private String status;
@@ -71,6 +63,7 @@ public class AcmeEmployee implements Serializable {
         this.lastName = lastName;
     }
 
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     public LocalDate getStartDate() {
         return startDate;
     }
