@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <script type="text/javascript">
+            var ws;
+            function chatRelay()
+            {
+                var username = document.getElementById("username").valueOf();
+                var text = document.getElementById("chatText").valueOf();
+                if ("WebSocket" in window)
+                {
+                    var json = {
+                        'username': username,
+                        'message': text
+                    };
+
+                    // Let us open a web socket
+                    ws = new WebSocket("ws://localhost:8080/employee-client/chatEndpoint/" + username.value);
+                    ws.onopen = function ()
+                    {
+                        // Web Socket is connected, send data using send()
+                        ws.send(username);
+                    };
+                    ws.onmessage = function (evt)
+                    {
+                        var json = JSON.parse(evt.data);
+                        var currentValue = document.getElementById('output').innerHTML;
+                        document.getElementById('output').innerHTML =
+                               currentValue +
+                          '<br />' +
+                          json.username + ": " + json.message;
+
+                    };
+                    
+                    ws.onclose = function ()
+                    {
+                        // websocket is closed.
+                        alert("Connection is closed...");
+                    };
+
+                } else
+                {
+                    // The browser doesn't support WebSocket
+                    alert("WebSocket NOT supported by your Browser!");
+                }
+            }
+
+            function send() {
+                var username = document.getElementById('username').value;
+                var message = document.getElementById('chatText').value;
+            
+                var json = {
+                    'username': username,
+                    'message': message
+                };
+                ws.send(JSON.stringify(json));
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        Username: <input type="text" id="username"/>
+        <br/>
+               <input id="wsRelay" type="button" value="Connect"
+               onclick="chatRelay();"/>
+               <br/><br/>
+               
+        <textarea id="chatText" cols="30" rows="10"></textarea>
+        <br/><br/>
+
+        <input id="sendMessage" type="button" value="Send"
+               onclick="send();"/>
+
+        <br/><br/>
+        <div id="output"></div>
+    </body>
+
+</html>
