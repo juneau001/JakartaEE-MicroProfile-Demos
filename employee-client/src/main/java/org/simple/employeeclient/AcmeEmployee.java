@@ -1,8 +1,4 @@
-/*
- * Fermi National Accelerator Laboratory
- * Services, GIS & Real Property
- * www.fnal.gov
- */
+
 package org.simple.employeeclient;
 
 import javax.validation.constraints.Size;
