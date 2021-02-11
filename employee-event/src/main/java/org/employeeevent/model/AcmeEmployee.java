@@ -1,8 +1,4 @@
-/*
- * Fermi National Accelerator Laboratory
- * Services, GIS & Real Property
- * www.fnal.gov
- */
+
 package org.employeeevent.model;
 
 import java.io.Serializable;
