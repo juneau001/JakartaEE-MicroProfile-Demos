@@ -1,8 +1,4 @@
-/*
- * Fermi National Accelerator Laboratory
- * Services, GIS & Real Property
- * www.fnal.gov
- */
+
 package org.employeeservice;
 
 import org.employeeservice.entity.AcmeEmployee;
