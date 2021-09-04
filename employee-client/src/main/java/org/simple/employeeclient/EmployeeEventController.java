@@ -8,20 +8,20 @@ package org.simple.employeeclient;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Form;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Form;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.simple.employeeclient.constants.ApplicationConstants;
 
 /**
@@ -82,7 +82,7 @@ public class EmployeeEventController implements java.io.Serializable {
                 .path("ssebroadcaster/register");
         
         Response response = 
-        target.request(javax.ws.rs.core.MediaType.TEXT_PLAIN).get();
+        target.request(jakarta.ws.rs.core.MediaType.TEXT_PLAIN).get();
         System.out.println(response.getStatus());
         System.out.println(target.getUri());
         FacesContext.getCurrentInstance().addMessage(null,

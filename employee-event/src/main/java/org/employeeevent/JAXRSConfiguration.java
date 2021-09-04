@@ -1,8 +1,8 @@
 package org.employeeevent;
 
 import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
 /**
  * Configures JAX-RS for the application.
@@ -15,6 +15,7 @@ public class JAXRSConfiguration extends Application {
         Set<Class<?>> resources = new java.util.HashSet<>();
         resources.add(org.employeeevent.service.SseEventBroadcaster.class);
         resources.add(org.employeeevent.service.SseEventResource.class);
+        resources.add(org.employeeevent.resources.JavaEE8Resource.class);
         return resources;
     }
             

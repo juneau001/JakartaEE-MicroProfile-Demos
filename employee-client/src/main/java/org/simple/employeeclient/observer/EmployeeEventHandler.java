@@ -5,7 +5,7 @@
  */
 package org.simple.employeeclient.observer;
 
-import javax.enterprise.event.ObservesAsync;
+import jakarta.enterprise.event.ObservesAsync;
 import org.simple.employeeclient.EmployeeEvent;
 
 /**
