@@ -4,29 +4,29 @@ import org.simple.employeeclient.constants.ApplicationConstants;
 import org.simple.employeeclient.observer.NewHire;
 import org.simple.employeeclient.util.JsfUtil;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.event.Event;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonPointer;
-import jakarta.json.bind.Jsonb;
-import jakarta.json.bind.JsonbBuilder;
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.client.Invocation;
-import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.Form;
-import jakarta.ws.rs.core.GenericType;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import javax.annotation.PostConstruct;
+import javax.enterprise.event.Event;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonPointer;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Form;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -227,7 +227,7 @@ public class AcmeEmployeeController implements java.io.Serializable {
         try {
             JsonArray jsonObjects = buildEmployeesJson();
 
-            try (jakarta.json.JsonWriter jsonWriter = Json.createWriter(new FileWriter("Employees.json"))) {
+            try (javax.json.JsonWriter jsonWriter = Json.createWriter(new FileWriter("Employees.json"))) {
                 jsonWriter.writeArray(jsonObjects);
             }
 
