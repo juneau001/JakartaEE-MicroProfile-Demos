@@ -7,13 +7,13 @@ package org.employeeservice;
 
 
 import java.util.Set;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.core.Application;
 
 /**
  *
  * @author Juneau
  */
-@javax.ws.rs.ApplicationPath("rest")
+@jakarta.ws.rs.ApplicationPath("rest")
 public class ApplicationConfig extends Application {
     @Override
     public Set<Class<?>> getClasses() {

@@ -26,11 +26,7 @@
             <version>3.0.2</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.0.0</version>
-        </dependency>
+      
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
@@ -48,12 +44,9 @@
             <artifactId>microprofile</artifactId>
             <version>${version.microprofile}</version>
             <type>pom</type>
+            <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>10.0.0</version>
-        </dependency>
+       
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -128,5 +121,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
