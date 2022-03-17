@@ -5,8 +5,8 @@
  */
 package org.simple.employeeclient.observer;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.ObservesAsync;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.ObservesAsync;
 import org.simple.employeeclient.EmployeeEvent;
 
 /**

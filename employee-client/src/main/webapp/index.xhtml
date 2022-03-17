@@ -19,12 +19,12 @@
 
             <p:tabView id="exampleTabView">
                 <p:tab id="employeeTab" title="Employees">
-                    <p:dataTable id="empTable" value="#{acmeEmployeeController.items}" var="emp">
+                    <p:dataTable id="empTable" value="#{acmeEmployeeController.items}" var="emp" lazy="true">
                         <p:column headerText="First">
-                            <h:outputText value="#{emp.firstName}"/>
+                            <h:outputText value="#{emp.firstName}" lazy="true"/>
                         </p:column>
                         <p:column headerText="Last">
-                            <h:outputText value="#{emp.lastName}"/>
+                            <h:outputText value="#{emp.lastName}" lazy="true"/>
                         </p:column>
                         <p:column headerText="Date">
                             <h:outputText value="#{emp.startDate}">
