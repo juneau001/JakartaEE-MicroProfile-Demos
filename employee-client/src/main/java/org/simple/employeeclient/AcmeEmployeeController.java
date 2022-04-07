@@ -113,7 +113,7 @@ public class AcmeEmployeeController implements java.io.Serializable {
             // Create employee object from empJson
             Jsonb jsonb = JsonbBuilder.create();
 
-            emp = (AcmeEmployee) jsonb.fromJson(empJson, AcmeEmployee.class);
+            emp = jsonb.fromJson(empJson, AcmeEmployee.class);
         }
         if (emp != null) {
             setReturnMessage2(emp.getLastName() + " - " + emp.getFirstName());
