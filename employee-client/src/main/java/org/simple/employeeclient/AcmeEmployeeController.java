@@ -118,7 +118,7 @@ public class AcmeEmployeeController implements java.io.Serializable {
         if (emp != null) {
             setReturnMessage2(emp.getLastName() + " - " + emp.getFirstName());
         } else {
-            setReturnMessage2("You have failed");
+            setReturnMessage2("Employee conversion has failed");
         }
     }
 
