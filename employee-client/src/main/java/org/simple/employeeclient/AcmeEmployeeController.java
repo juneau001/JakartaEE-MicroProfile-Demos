@@ -29,6 +29,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 
@@ -113,12 +114,12 @@ public class AcmeEmployeeController implements java.io.Serializable {
             // Create employee object from empJson
             Jsonb jsonb = JsonbBuilder.create();
 
-            emp = (AcmeEmployee) jsonb.fromJson(empJson, AcmeEmployee.class);
+            emp = jsonb.fromJson(empJson, AcmeEmployee.class);
         }
         if (emp != null) {
             setReturnMessage2(emp.getLastName() + " - " + emp.getFirstName());
         } else {
-            setReturnMessage2("You have failed");
+            setReturnMessage2("Employee conversion has failed");
         }
     }
 
@@ -199,7 +200,7 @@ public class AcmeEmployeeController implements java.io.Serializable {
      * @return
      */
     public JsonArray buildEmployeesJson() {
-        List<AcmeEmployee> employees = items;
+        List<AcmeEmployee> employees = List.copyOf(items);
         JsonArrayBuilder builder = Json.createArrayBuilder();
         JsonArray results = null;
         
@@ -247,15 +248,13 @@ public class AcmeEmployeeController implements java.io.Serializable {
     public void findEmployeeByLast() {
         setSearchResult(null);
         String text = "/" + this.lastSearchText;
-        JsonObject json = Json.createObjectBuilder().build();
         JsonArray empArray = buildEmployeesJson();
         if (lastSearchText != null && empArray != null) {
             JsonPointer pointer = Json.createPointer(text);
             // Replace a value
-            JsonArray array = (JsonArray) pointer.replace(empArray, Json.createValue(replacementString != null?replacementString:"JsonMaster"));
+            JsonArray array = pointer.replace(empArray, Json.createValue(replacementString != null ? replacementString : "JsonMaster"));
             setSearchResult(array.toString());
         }
-
     }
 
     /**

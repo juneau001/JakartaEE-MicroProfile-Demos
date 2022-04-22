@@ -24,7 +24,7 @@
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
 
-    <!-- Creates a DataSource called "jdbc/testDS" for accessing the connection pool -->
+    <!-- Creates a DataSource called "jdbc/derby_net_acme_acmeuserPool" for accessing the connection pool -->
     <jdbc-resource enabled="true" jndi-name="java:app/jdbc/DerbyDataSource" object-type="user" pool-name="jdbc/derby_net_acme_acmeuserPool">
         <description>Employee DataSource</description>
     </jdbc-resource>
