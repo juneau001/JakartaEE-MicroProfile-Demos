@@ -15,7 +15,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <version.jakartaee>9.1.0</version.jakartaee>
+        <version.jakartaee>10.0.0</version.jakartaee>
         <version.microprofile>4.1</version.microprofile>
     </properties>
 
@@ -107,7 +107,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.platform</groupId>
                                     <artifactId>jakarta.jakartaee-api</artifactId>
-                                    <version>9.1.0</version>
+                                    <version>10.0.0</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>

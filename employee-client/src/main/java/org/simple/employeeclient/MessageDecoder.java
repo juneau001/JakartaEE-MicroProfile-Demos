@@ -6,11 +6,11 @@
 package org.simple.employeeclient;
 
 import java.io.StringReader;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.websocket.DecodeException;
-import javax.websocket.Decoder;
-import javax.websocket.EndpointConfig;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.EndpointConfig;
 
 /**
  *
