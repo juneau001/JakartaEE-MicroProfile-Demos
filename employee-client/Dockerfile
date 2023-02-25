@@ -1,4 +1,4 @@
-FROM payara/micro:5.2022.1-jdk11
+FROM payara/micro:6.2023.2-jdk17
 
 # Copy an application to be loaded
 COPY ./target/employee-client.war /opt/payara/deployments
