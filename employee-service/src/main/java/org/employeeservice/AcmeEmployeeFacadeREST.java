@@ -7,14 +7,18 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotSupportedException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.EntityPart;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
@@ -114,6 +118,22 @@ public class AcmeEmployeeFacadeREST {
             emp -> employee.equals(emp.getId()))
 	   .collect(Collectors.toList());
         
+    }
+    
+    @POST
+    @Path("submit/picture")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response postForm(@FormParam("userId") String userId,
+            @FormParam("picture") EntityPart pic) {
+
+        String fileName = pic.getFileName().orElseThrow(NotSupportedException::new);
+        if (fileName != null) {
+            InputStream content = pic.getContent();
+            System.out.println("FileName is: " + fileName);
+            System.out.println("Content: " + content);
+            //Do something with the content... 
+        }
+        return Response.ok("Picture uploaded successfully").build();
     }
 
 }
